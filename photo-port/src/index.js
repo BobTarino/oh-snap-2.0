@@ -1,9 +1,11 @@
+// main entry point for application
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// The ReactDOM library is rendering the App component at the root element in the HTML (public/index.html)
 ReactDOM.render(
   <React.StrictMode>
     <App />
