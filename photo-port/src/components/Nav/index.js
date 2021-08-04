@@ -6,6 +6,7 @@ function Nav(props) {
         categories = [],
         setCurrentCategory,
         currentCategory,
+        setContactSelected
     } = props
     
     useEffect(() => {
