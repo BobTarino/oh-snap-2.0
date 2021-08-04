@@ -1,12 +1,33 @@
 import React, { useState } from 'react';
-
+import { validateEmail } from '../../utils/helpers';
 
 function ContactForm() {
+    
     //  hook will manage form data and initialize value of the state
     const [formState, setFormState] = useState({ name: '', email: '', message: '' });
     const { name, email, message } = formState;
+    const [errorMessage, setErrorMessage] = useState('');
     // function will sync the internal state of the component formState with the user input from the DOM
     function handleChange(e) {
+        // validation
+        if (e.target.name === 'email') {
+            const isValid = validateEmail(e.target.value);
+            console.log(isValid);
+            // isValid conditional statement
+            if (!isValid) {
+                setErrorMessage('Your email is invalid.');
+            } else {
+                if (!e.target.value.length) {
+                  setErrorMessage(`${e.target.name} is required.`);
+                } else {
+                    // no error
+                  setErrorMessage('');
+                }
+            }
+            if (!errorMessage) {
+                setFormState({ ...formState, [e.target.name]: e.target.value });
+            }
+        }  
         // uses setFormState() to update the formState value for the name property
         // spread operator (...) to retain the other key-value pairs in this object
         setFormState({...formState, [e.target.name]: e.target.value })
